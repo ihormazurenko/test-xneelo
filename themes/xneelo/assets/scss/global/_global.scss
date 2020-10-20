@@ -215,6 +215,7 @@ a.skip-main {
   }
 
   .content-wrap {
+    overflow: hidden;
     padding: 70px 50px;
 
     display: -webkit-flex;
@@ -337,6 +338,7 @@ a.skip-main {
     }
 
     .content {
+      width: 100%;
       max-width: 900px;
       margin: 0 auto;
     }

@@ -8,20 +8,27 @@ get_header(); ?>
 
     <div class="course-wrap">
 
-        <ul class="filter-list" id="course-filter">
-            <li>
-                <a href="#all" title="<?php esc_attr_e('All', 'xneelo'); ?>"><?php _e('All', 'xneelo'); ?></a>
-            </li>
-            <li class="active">
-                <a href="#current" title="<?php esc_attr_e('Current', 'xneelo'); ?>"><?php _e('Current', 'xneelo'); ?></a>
-            </li>
-            <li>
-                <a href="#pending" title="<?php esc_attr_e('Pending', 'xneelo'); ?>"><?php _e('Pending', 'xneelo'); ?></a>
-            </li>
-            <li>
-                <a href="#completed" title="<?php esc_attr_e('Completed', 'xneelo'); ?>"><?php _e('Completed', 'xneelo'); ?></a>
-            </li>
-        </ul>
+        <?php
+            $filterArr = [
+                'all'       => __('All', 'xneelo'),
+                'current'   => __('Current', 'xneelo'),
+                'pending'   => __('Pending', 'xneelo'),
+                'completed' => __('Completed', 'xneelo'),
+            ];
+
+            $statusTab = ($_GET && $_GET['status']) ? $_GET['status'] : 'all';
+
+            if ( is_array($filterArr) && count($filterArr) > 0 ) {
+                echo '<ul class="filter-list" id="course-filter">';
+
+                    foreach ($filterArr as $key => $value) {
+                        $tab_class = ( $statusTab == $key ) ? ' class="active"' : '';
+                        echo '<li'. $tab_class .'><a href="#'. $key .'" title="'. esc_attr($value) .'">'. $value .'</a></li>';
+                    }
+
+                echo '</ul>';
+            }
+        ?>
 
         <ul class="course-list" id="course-list">
             <?php
@@ -29,6 +36,10 @@ get_header(); ?>
                     'post_type'     => 'course',
                     'post_status'   => 'publish',
                     'posts_per_page'=> -1,
+                    /* I saw the item about just the last 3 courses,
+                        but I decided to display all of them in one list,
+                        since I've implemented a dynamic determination of the course status
+                        based on the start and end date, and not a custom field for that. */
                     'orderby'       => 'date',
                     'order'         => 'DESC',
                 );
@@ -36,16 +47,36 @@ get_header(); ?>
 
                 if ( $course_query->have_posts() ) :
                     $i = 0;
+                    $currentDate = strtotime( date(get_option('date_format')) );
+
                     while ( $course_query->have_posts() ) : $course_query->the_post();
 
-                    $status = '';
                     $url        = get_the_permalink();
                     $title      = get_the_title();
                     $esc_title  = esc_attr(strip_tags($title));
                     $start_date = get_field('start_date');
                     $end_date   = get_field('end_date');
+                    $start_date_U   = strtotime($start_date);
+                    $end_date_U     = strtotime($end_date);
 
-                    echo '<li data-status="'.$status.'">';
+                    $status     = '';
+                    if ( $start_date_U < $end_date_U ) {
+                        if ( $end_date_U >= $currentDate ) {
+
+                            if ( $start_date_U > $currentDate ) {
+                                $status = 'pending';
+                            } else {
+                                $status = 'current';
+                            }
+
+                        } else {
+                            $status = 'completed';
+                        }
+                    }
+
+                    $course_class = ( $statusTab == 'all' || $statusTab == $status ) ? 'show' : '';
+
+                    echo '<li data-status="all '.$status.'" class="'.$course_class.'">';
                         echo '<span class="start-month">'. date( "M", strtotime($start_date) ) .'</span>';
 
                         echo '<div class="course-heading">';

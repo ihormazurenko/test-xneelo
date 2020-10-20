@@ -6,7 +6,7 @@
 
     <div class="course-wrap">
 
-        <ul class="course-list" id="course-list">
+        <ul class="course-list">
 
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 

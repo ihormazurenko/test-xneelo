@@ -5,23 +5,37 @@ jQuery(function($){
         $('.mobile-menu-toggle').on('click', function(){
             $(this).toggleClass('active');
             $('.mobile-menu-wrap').toggleClass('showing');
-            // $(document.body).toggleClass('overflow');
         });
 
 
-        //for tabs
-		$('.tab-name-list li').on('click', function () {
-			var tabId = $(this).data('tabName'),
-				nameBox = $(this).parent(),
-				nameList = nameBox.find('li'),
-                contentBox =  nameBox.next(),
-				contentList =contentBox.find('li'),
-				currentContent = contentBox.find("[data-tab-content="+tabId+"]");
+        //for Courses filtering
+		var filterItems = $('#course-filter').find('a');
+		filterItems.on('click', function (e) {
+			e.preventDefault();
 
-			nameList.removeClass('active');
-			contentList.removeClass('show');
-			$(this).addClass('active');
-			currentContent.addClass('show');
+			var status = this.hash.substr(1),
+				courseItems = $("#course-list > *");
+
+			filterItems.parent('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			courseItems.removeClass('show').filter('[data-status~="'+status+'"]').addClass('show');
+
+			if (history.pushState) {
+				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?status=' + status;
+				window.history.pushState({path:newurl},'', newurl);
+			}
+			// var tabId = $(this).data('tabName'),
+			// 	nameBox = $(this).parent(),
+			// 	nameList = nameBox.find('li'),
+            //     contentBox =  nameBox.next(),
+			// 	contentList =contentBox.find('li'),
+			// 	currentContent = contentBox.find("[data-tab-content="+tabId+"]");
+			//
+			// nameList.removeClass('active');
+			// contentList.removeClass('show');
+			// $(this).addClass('active');
+			// currentContent.addClass('show');
         });
 
 

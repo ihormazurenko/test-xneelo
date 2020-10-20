@@ -91,14 +91,15 @@
 
   .logo {
     width: 200px;
-    max-height: 235px;
+    height: 230px;
     padding-bottom: 50px;
-    flex-grow: 0.33;
+    flex-grow: 0;
 
     @media all and (max-width: 1024px) {
       padding-bottom: 0;
       flex-grow: 0;
       min-height: 41px;
+      height: auto;
     }
 
     img {
@@ -112,7 +113,7 @@
 
   .mobile-menu-wrap {
     max-height: 600px;
-    flex-grow: 0.67;
+    flex-grow: 1;
     -webkit-justify-content: space-between;
     justify-content: space-between;
 
