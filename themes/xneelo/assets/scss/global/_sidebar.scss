@@ -1,0 +1,211 @@
+.sidebar {
+  width: 300px;
+  padding: 70px 50px;
+  background: $color-bg-sidebar;
+
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  @media all and (max-width: 1366px) {
+    width: 250px;
+    padding: 60px 40px;
+  }
+  @media all and (max-width: 1024px) {
+    width: 100%;
+    padding: 40px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  @media all and (max-width: 767px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  > * {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 30px;
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 26px;
+
+    @media all and (max-width: 767px) {
+      right: 10px;
+    }
+
+    span {
+      z-index: 1001;
+      left: 50%;
+      top: 50%;
+      @include css3-prefix('transform', 'translate(-50%,-50%)');
+
+      &,
+      &:before,
+      &:after {
+        position: absolute;
+        display: block;
+        content: '';
+        cursor: pointer;
+        height: 2px;
+        width: 30px;
+        background-color: $color-title;
+        @include border-radius('2px');
+        @include transition('all ' $transition-other);
+      }
+      &:before {
+        top: -9px;
+      }
+      &:after {
+        bottom: -9px;
+      }
+    }
+    &.active {
+      span {
+        background-color: transparent;
+        &:before {
+          top: 0;
+          @include css3-prefix('transform', 'rotate(45deg)');
+        }
+        &:after {
+          bottom: 0;
+          @include css3-prefix('transform', 'rotate(-45deg)');
+        }
+      }
+    }
+
+    @media all and (max-width: 1024px) {
+      display: block;
+    }
+  }
+
+  .logo {
+    width: 200px;
+    max-height: 235px;
+    padding-bottom: 50px;
+    flex-grow: 0.33;
+
+    @media all and (max-width: 1024px) {
+      padding-bottom: 0;
+      flex-grow: 0;
+      min-height: 41px;
+    }
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin: 0;
+    }
+  }
+
+  .mobile-menu-wrap {
+    max-height: 600px;
+    flex-grow: 0.67;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+
+    @media all and (max-width: 1024px) {
+      max-height: none;
+      display: block;
+
+      overflow-y: auto;
+      position: absolute;
+      width: 250px;
+      height: 100%;
+      top: 0;
+      right: -250px;
+      z-index: 200;
+      padding: 120px 40px;
+      background-color: $color-bg-sidebar;
+      @include transition('right ' $transition-other ' ease');
+      @include box-shadow('none');
+
+      &.showing {
+        right: 0;
+        @include box-shadow('-5px 0 20px rgba(0, 0, 0, 0.15)');
+      }
+    }
+    .main-nav {
+      flex-grow: 1;
+      padding-bottom: 50px;
+      @media all and (max-width: 1024px) {
+        padding-bottom: 60px;
+      }
+      > ul {
+        padding-left: 30px;
+        li {
+          padding-left: 15px;
+          margin-bottom: 40px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          &.current-menu-item,
+          .single-course &.menu-item-64 {
+            list-style-type: disc;
+            color: $color-title;
+            a {
+              color: $color-title;
+              font-weight: $medium;
+            }
+          }
+          @media all and (max-width: 1024px) {
+            margin-bottom: 30px;
+          }
+        }
+        a {
+          font-size: 19px;
+          color: $color-text2;
+          &:hover,
+          &:focus {
+            color: $color-title;
+            text-decoration: none;
+            font-weight: $medium;
+          }
+        }
+      }
+    }
+    .account-list {
+      li {
+        position: relative;
+        padding-left: 45px;
+        margin-bottom: 32px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      a {
+        font-size: 19px;
+        color: $color-text2;
+        &:hover,
+        &:focus {
+          color: $color-title;
+          text-decoration: none;
+          font-weight: $medium;
+        }
+        > i {
+          position: absolute;
+          left: 2px;
+          top: 50%;
+          @include css3-prefix('transform', 'translate(0, -50%)');
+          font-size: 21px;
+          &.fa-cog {
+            left: 0;
+            font-size: 23px;
+          }
+        }
+      }
+    }
+  }
+}
