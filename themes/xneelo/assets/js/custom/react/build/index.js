@@ -342,7 +342,7 @@ var _wp$element = wp.element,
 
 var defaultURL = window.location.href;
 var News = function News() {
-  var _useState = useState([]),
+  var _useState = useState(null),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
       news = _useState2[0],
       setNews = _useState2[1];
@@ -405,13 +405,17 @@ var News = function News() {
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("ul", {
     className: "archive-list"
-  }, loading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "Loading..."), news.map(function (data) {
+  }, loading && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+    className: "no-results"
+  }, "Loading...")), news && news.map(function (data) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_news_item__WEBPACK_IMPORTED_MODULE_2__["NewsItem"], {
       onClick: onPostClick,
       key: data.id,
       data: data
     });
-  }), !loading && news.length === 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, "Sorry, no news available.")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"], {
+  }), news && !loading && news.length === 0 && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+    className: "no-results"
+  }, "Sorry, no news available."))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"], {
     isOpen: isOpen,
     onClose: onClose
   }, activePost && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("article", {

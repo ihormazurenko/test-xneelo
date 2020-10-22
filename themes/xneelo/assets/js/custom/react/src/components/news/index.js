@@ -5,7 +5,7 @@ import {Drawer} from '../drawer';
 const defaultURL = window.location.href;
 
 export const News = () => {
-    const [news, setNews] = useState([]);
+    const [news, setNews] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isOpen, setOpen] = useState(false);
     const [activePost, setPost] = useState(null);
@@ -45,15 +45,15 @@ export const News = () => {
         <>
             <ul className="archive-list">
                 {loading && (
-                    <p>Loading...</p>
+                    <li><p className='no-results'>Loading...</p></li>
                 )}
 
-                {news.map(data => {
+                {news && news.map(data => {
                     return <NewsItem onClick={onPostClick} key={data.id} data={data} />
                 })}
 
-                {!loading && news.length === 0 && (
-                    <p>Sorry, no news available.</p>
+                {news && !loading && news.length === 0 && (
+                    <li><p className='no-results'>Sorry, no news available.</p></li>
                 )}
             </ul>
 

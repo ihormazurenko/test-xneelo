@@ -472,10 +472,14 @@ a.skip-main {
     .wrapper .archive-content .archive-list .content-box header a:hover, .wrapper .archive-content .archive-list .content-box header a:focus {
       text-decoration: none; }
   .wrapper .archive-content .archive-list .content-box .categories:not(:empty) {
-    margin-bottom: 15px;
+    margin-bottom: 17px;
     display: block; }
   .wrapper .archive-content .archive-list .content-box .categories a {
-    font-size: 16px; }
+    font-size: 15px;
+    color: #a4a7b9; }
+    .wrapper .archive-content .archive-list .content-box .categories a:hover, .wrapper .archive-content .archive-list .content-box .categories a:focus {
+      color: #11142d;
+      text-decoration: none; }
     .wrapper .archive-content .archive-list .content-box .categories a:not(:last-child):after {
       content: ', '; }
   .wrapper .archive-content .archive-list .content-box .excerpt {

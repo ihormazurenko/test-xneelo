@@ -431,11 +431,17 @@ a.skip-main {
         }
         .categories {
           &:not(:empty) {
-            margin-bottom: 15px;
+            margin-bottom: 17px;
             display: block;
           }
           a {
-            font-size: 16px;
+            font-size: 15px;
+            color: $color-text;
+            &:hover,
+            &:focus {
+              color: $color-title;
+              text-decoration: none;
+            }
             &:not(:last-child) {
               &:after {
                 content: ', ';
