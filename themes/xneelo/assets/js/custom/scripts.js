@@ -25,17 +25,6 @@ jQuery(function($){
 				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?status=' + status;
 				window.history.pushState({path:newurl},'', newurl);
 			}
-			// var tabId = $(this).data('tabName'),
-			// 	nameBox = $(this).parent(),
-			// 	nameList = nameBox.find('li'),
-            //     contentBox =  nameBox.next(),
-			// 	contentList =contentBox.find('li'),
-			// 	currentContent = contentBox.find("[data-tab-content="+tabId+"]");
-			//
-			// nameList.removeClass('active');
-			// contentList.removeClass('show');
-			// $(this).addClass('active');
-			// currentContent.addClass('show');
         });
 
 

@@ -1,6 +1,8 @@
 <?php if (!defined('ABSPATH')) exit;
 
-    if ( is_archive() ) {
+    if ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_archive() ) {
         $title = get_the_archive_title();
     } elseif ( is_search() ) {
         $title = sprintf( __( 'Search Results for &#8220;%s&#8221;', 'xneelo' ), get_search_query() );

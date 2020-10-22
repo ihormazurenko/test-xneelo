@@ -140,9 +140,9 @@
     }
     .main-nav {
       flex-grow: 1;
-      padding-bottom: 50px;
+      padding-bottom: 100px;
       @media all and (max-width: 1024px) {
-        padding-bottom: 60px;
+        padding-bottom: 70px;
       }
       > ul {
         padding-left: 30px;
@@ -153,7 +153,8 @@
             margin-bottom: 0;
           }
           &.current-menu-item,
-          .single-course &.menu-item-64 {
+          .single-course &.menu-item-64,
+          .single-news &.menu-item-75 {
             list-style-type: disc;
             color: $color-title;
             a {

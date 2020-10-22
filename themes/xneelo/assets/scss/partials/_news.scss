@@ -1,0 +1,111 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $white;
+  padding: 100px 25px;
+  overflow-y: auto;
+  z-index: 10000;
+
+  @include transition('transform .5s');
+  @include css3-prefix('transform', 'translateX(100%)');
+
+  &.is-open {
+    @include css3-prefix('transform', 'translateX(0)');
+  }
+
+  .admin-bar & {
+    top: 32px;
+    @media all and (max-width: 782px) {
+      top: 46px;
+    }
+    @media all and (max-width: 600px) {
+      top: 0;
+    }
+  }
+
+  .btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    background-color: $color-bg-sidebar;
+    border: 1px solid #e2e2e9;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 30px;
+    @include border-radius();
+    @include transition($transition-link);
+
+    &:hover,
+    &:focus {
+      background-color: $color-bg;
+    }
+  }
+
+  .popup-title {
+    margin-bottom: 30px;
+    font-size: 32px;
+    line-height: 1.25;
+  }
+}
+
+.custom-gallery {
+  &,
+  .content-style & {
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+
+    @media all and (max-width: 640px) {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    > * {
+      padding: 20px;
+      width: 33.33%;
+      margin: 0;
+      list-style-type: none;
+
+      @media all and (max-width: 640px) {
+        width: 50%;
+        padding: 15px;
+      }
+      @media all and (max-width: 400px) {
+        width: 100%;
+      }
+
+      .img-box {
+        overflow: hidden;
+        width: 100%;
+        height: 180px;
+        background: #cccccc;
+        @include border-radius();
+        img {
+          display: block;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          @include transition('all ' $transition-other ' ease');
+        }
+      }
+    }
+  }
+}
+.custom-field-list .custom-gallery,
+.content-style .custom-field-list .custom-gallery {
+  margin-left: -30px;
+  margin-bottom: -20px;
+
+  @media all and (max-width: 640px) {
+    margin-left: -45px;
+    margin-bottom: -15px;
+  }
+}
