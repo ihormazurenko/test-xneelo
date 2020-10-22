@@ -12,7 +12,7 @@ export const News = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch('http://test-xneelo/wp-json/wp/v2/news?filter[orderby]=date&order=desc&_embed')
+        fetch(siteUrl + '/wp-json/wp/v2/news?filter[orderby]=date&order=desc&_embed')
             .then(response => response.json())
             .then(posts => {
                 setNews(posts);

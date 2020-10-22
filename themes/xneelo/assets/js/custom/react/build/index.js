@@ -364,7 +364,7 @@ var News = function News() {
 
   useEffect(function () {
     setLoading(true);
-    fetch('http://test-xneelo/wp-json/wp/v2/news?filter[orderby]=date&order=desc&_embed').then(function (response) {
+    fetch(siteUrl + '/wp-json/wp/v2/news?filter[orderby]=date&order=desc&_embed').then(function (response) {
       return response.json();
     }).then(function (posts) {
       setNews(posts);

@@ -10,4 +10,8 @@
 
     </div>
 
+    <script type="text/javascript">
+        var siteUrl = '<?php echo home_url('/'); ?>';
+    </script>
+
 <?php get_footer(); ?>
